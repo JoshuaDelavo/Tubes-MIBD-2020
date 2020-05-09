@@ -43,7 +43,7 @@ class Admin extends CI_Controller
         $data['query'] = $this->db->query(
             "SELECT *
             FROM `user` 
-            Where `id` '=' $role
+            Where `id` == $role
            "
         )->result_array();
         $this->load->view('templates/header', $data);
