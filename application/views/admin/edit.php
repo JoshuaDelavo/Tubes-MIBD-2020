@@ -44,29 +44,37 @@
                 }
             </script>
             <!-- form data -->
-            <form>
+            <form method="POST" action="<?= base_url('admin/update') ?>">
+                <input type="hidden" name="data" value="<?= $user['id'] ?>">
                 <div class="form-group row col-7">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" value="<?= $user['email'] ?>">
+                        <input type="text" class="form-control" name="name" id="name" value="<?= $user['name'] ?>">
                     </div>
                 </div>
                 <div class="form-group row col-7">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email" id="email">
+                        <input type="email" class="form-control" name="email" id="email" value="<?= $user['email'] ?>">
                     </div>
                 </div>
                 <div class="form-group row col-7">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" name="password" id="password">
+                        <input type="password" class="form-control" name="password" id="password" value="<?= $user['password'] ?>">
                     </div>
                 </div>
                 <div class="form-group row col-7">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Jabatan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="jabatan" id="jabatan">
+                        <input type="text" class="form-control" name="jabatan" id="jabatan" value="<?php
+                                                                                                    if ($user['role_id'] == '2') {
+                                                                                                        echo 'Pimpinan Taman';
+                                                                                                    } else if ($user['role_id'] == '3') {
+                                                                                                        echo 'Operator';
+                                                                                                    }
+
+                                                                                                    ?>">
                     </div>
                 </div>
                 <div class="form-group row col-7">
@@ -76,4 +84,3 @@
                 </div>
             </form>
         </main>
-        <?= print_r($query['id']) ?>

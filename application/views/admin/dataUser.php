@@ -53,7 +53,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $id = 1 ?>
+                                <?php $ct = 1 ?>
                                 <?php foreach ($query as $m) : ?>
                                     <?php
                                     if ($m['role_id'] == '2') {
@@ -63,7 +63,7 @@
                                     }
                                     ?>
                                     <tr>
-                                        <td><?= $id ?></td>
+                                        <td><?= $ct ?></td>
                                         <td><?= $m['name'] ?></td>
                                         <td><?= $m['email'] ?></td>
                                         <td><?= $m['password'] ?></td>
@@ -71,7 +71,7 @@
                                         <td><button class="btn" name="id" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
                                         <td><a href=""><i class="fas fa-fw fa-user-edit"></i>Delete</a></td>
                                     </tr>
-                                    <?php $id++; ?>
+                                    <?php $ct++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

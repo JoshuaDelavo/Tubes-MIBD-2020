@@ -39,13 +39,13 @@ class Admin extends CI_Controller
     {
         $data['title'] = 'Data User';
         $role = $this->input->post('id');
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['query'] = $this->db->query(
-            "SELECT *
-            FROM `user` 
-            Where `id` == $role
-           "
-        )->result_array();
+        $data['user'] = $this->db->get_where('user', ['id' => $role])->row_array();
+        // $data['query'] = $this->db->query(
+        //     "SELECT *
+        //     FROM `user` 
+        //     Where `id` == '$role'
+        //    "
+        // )->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/edit', $data);
         $this->load->view('templates/footer');
@@ -53,26 +53,27 @@ class Admin extends CI_Controller
 
     public function update()
     {
-        // $id = $this->input->post('id');
-        // $data['query'] = $this->db->query(
-        //     "SELECT *
-        //     FROM `user`
-        //     WHERE `user`.`id` = $id
-        //     "
-
-        // )->row_array();
-
-        // foreach ($query->getResult() as $row) {
-        //     echo $row->title;
-        //     echo $row->name;
-        //     echo $row->body;
-        // }
-
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/edit', $data);
-        $this->load->view('templates/footer');
+        $jabatan = htmlspecialchars($this->input->post('jabatan', true));
+        if ($jabatan == 'Operator') {
+            $jabatan = "3";
+        }
+        if ($jabatan == "Pimpinan Taman") {
+            $jabatan = "2";
+        }
+        $pass =  htmlspecialchars($this->input->post('password', true));
+        if (substr($pass, 7) != "$2y$10$") {
+            $pass = password_hash($pass, PASSWORD_DEFAULT);
+        }
+        $data =
+            [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'password' => $pass,
+                'role_id' => $jabatan
+            ];
+        $post = $this->input->post('data');
+        $this->db->update('user', $data, "id = $post");
+        redirect('admin/dataUser');
 
         // $this->form_validation->set_rules('name', 'Name', 'required|trim');
         // $this->form_validation->set_rules(
