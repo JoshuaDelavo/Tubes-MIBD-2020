@@ -53,6 +53,9 @@ class Admin extends CI_Controller
 
     public function update()
     {
+        $role = $this->input->post('id');
+        $data['user'] = $this->db->get_where('user', ['id' => $role])->row_array();
+
         $jabatan = htmlspecialchars($this->input->post('jabatan', true));
         if ($jabatan == 'Operator') {
             $jabatan = "3";
@@ -61,9 +64,12 @@ class Admin extends CI_Controller
             $jabatan = "2";
         }
         $pass =  htmlspecialchars($this->input->post('password', true));
-        if (substr($pass, 7) != "$2y$10$") {
-            $pass = password_hash($pass, PASSWORD_DEFAULT);
+        $pass2 = htmlspecialchars($this->input->post('password2', true));
+        if ($pass == $pass2) {
+            $pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
         }
+        var_dump($pass);
+        die;
         $data =
             [
                 'name' => htmlspecialchars($this->input->post('name', true)),

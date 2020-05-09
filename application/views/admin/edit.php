@@ -62,6 +62,7 @@
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" name="password" id="password" value="<?= $user['password'] ?>">
+                        <input type="hidden" class="form-control" name="password2" id="password" value="<?= $user['password'] ?>">
                     </div>
                 </div>
                 <div class="form-group row col-7">
