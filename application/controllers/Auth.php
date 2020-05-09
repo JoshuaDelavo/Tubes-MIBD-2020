@@ -99,7 +99,7 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Congratulation Your Account Has Been Registered !!
               </div>');
-            redirect('auth');
+            redirect('admin/dataUser');
         }
     }
 

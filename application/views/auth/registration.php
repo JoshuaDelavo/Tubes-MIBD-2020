@@ -45,9 +45,9 @@
                                     <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Create Account</button></div>
                                 </form>
                             </div>
-                            <div class="card-footer text-center">
+                            <!-- <div class="card-footer text-center">
                                 <div class="small"><a href="<?= base_url('auth'); ?>">Have an account? Go to login</a></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

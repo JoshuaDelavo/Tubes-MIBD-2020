@@ -21,9 +21,6 @@
                                         <button class="btn btn-primary" type="submit">Login</button></div>
                                 </form>
                             </div>
-                            <div class="card-footer text-center">
-                                <div class="small"><a href="<?= base_url('auth/registration'); ?>">Need an account? Sign up!</a></div>
-                            </div>
                         </div>
                     </div>
                 </div>
