@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-//Testing ampe bego
+
 class Admin extends CI_Controller
 {
     public function __construct()
