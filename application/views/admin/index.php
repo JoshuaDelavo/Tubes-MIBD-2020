@@ -13,7 +13,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
                         Data User
                     </a>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <a class="nav-link collapsed" href="<?= base_url('admin/dataScooter') ?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-fw fa-edit"></i></div>
                         Data & Tarif Scooter
                     </a>

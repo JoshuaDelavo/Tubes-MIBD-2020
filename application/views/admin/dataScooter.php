@@ -9,16 +9,18 @@
                         Admin
                     </a>
                     <div class="sb-sidenav-menu-heading">Menu</div>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link collapsed" href="<?= base_url('admin/dataUser') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
                             Data User
                         </a>
                     </li>
-                    <a class="nav-link collapsed" href="<?= base_url('admin/dataScooter') ?>">
-                        <div class="sb-nav-link-icon"><i class="fas fa-fw fa-edit"></i></div>
-                        Data & Tarif Scooter
-                    </a>
+                    <li class="nav-item active ">
+                        <a class="nav-link collapsed" href="<?= base_url('admin/dataScooter') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fw fa-edit"></i></div>
+                            Data & Tarif Scooter
+                        </a>
+                    </li>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -30,7 +32,7 @@
     <div id="layoutSidenav_content">
         <main>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Data User</li>
+                <li class="breadcrumb-item active">Data Scooter</li>
             </ol>
 
             <!-- query data User -->
@@ -43,11 +45,11 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Password</th>
-                                    <th>Position</th>
+                                    <th>Gambar</th>
+                                    <th>NoMesin</th>
+                                    <th>Jenis</th>
+                                    <th>Warna</th>
+                                    <th>Tarif Sewa/Jam</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -55,20 +57,13 @@
                             <tbody>
                                 <?php $ct = 1 ?>
                                 <?php foreach ($query as $m) : ?>
-                                    <?php
-                                    if ($m['role_id'] == '2') {
-                                        $jabatan = 'Pimpinan Taman';
-                                    } else if ($m['role_id'] == '3') {
-                                        $jabatan = 'Operator';
-                                    }
-                                    ?>
                                     <tr>
-                                        <td><?= $ct ?></td>
-                                        <td><?= $m['name'] ?></td>
-                                        <td><?= $m['email'] ?></td>
-                                        <td><?= $m['password'] ?></td>
-                                        <td><?= $jabatan ?></td>
-                                        <td><button class="btn" name="id" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
+                                        <td><img src="../asset/image/<?= $m['gambar'] ?>" class="img-thumbnail" style="width: 100px; height: 50"></img> </td>
+                                        <td><?= $m['noMesin'] ?></td>
+                                        <td><?= $m['jenis'] ?></td>
+                                        <td><?= $m['warna'] ?></td>
+                                        <td><?= $m['rating'] ?></td>
+                                        <td><button class="btn" name="id" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
                                         <td><a href=""><i class="fas fa-fw fa-user-edit"></i>Delete</a></td>
                                     </tr>
                                     <?php $ct++; ?>

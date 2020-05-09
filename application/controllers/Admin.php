@@ -119,4 +119,18 @@ class Admin extends CI_Controller
         //     redirect('admin/dataUser');
         // }
     }
+
+    public function dataScooter()
+    {
+        $data['title'] = 'Data User';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['query'] = $this->db->query(
+            "SELECT *
+            FROM `datascooter` 
+           "
+        )->result_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/dataScooter', $data);
+        $this->load->view('templates/footer');
+    }
 }
