@@ -65,11 +65,10 @@ class Admin extends CI_Controller
         }
         $pass =  htmlspecialchars($this->input->post('password', true));
         $pass2 = htmlspecialchars($this->input->post('password2', true));
-        if ($pass == $pass2) {
-            $pass = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        if (!$pass == $pass2) {
+            $pass3 = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $pass = $pass3;
         }
-        var_dump($pass);
-        die;
         $data =
             [
                 'name' => htmlspecialchars($this->input->post('name', true)),
@@ -77,6 +76,7 @@ class Admin extends CI_Controller
                 'password' => $pass,
                 'role_id' => $jabatan
             ];
+
         $post = $this->input->post('data');
         $this->db->update('user', $data, "id = $post");
         redirect('admin/dataUser');
