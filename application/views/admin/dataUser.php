@@ -49,7 +49,6 @@
                                     <th>Password</th>
                                     <th>Position</th>
                                     <th>Edit</th>
-                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +68,6 @@
                                         <td><?= $m['password'] ?></td>
                                         <td><?= $jabatan ?></td>
                                         <td><button class="btn" name="id" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        <td><button class="btn" name="delete" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></td>
                                     </tr>
                                     <?php $ct++; ?>
                                 <?php endforeach; ?>

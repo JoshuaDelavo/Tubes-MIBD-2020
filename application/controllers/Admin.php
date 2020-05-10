@@ -146,4 +146,21 @@ class Admin extends CI_Controller
         $this->load->view('admin/editS', $data);
         $this->load->view('templates/footer');
     }
+
+    public function delete()
+    {
+        $data['title'] = 'Data User';
+        $role = $this->input->post('idDelete');
+        $this->db->delete('user', ['id' => $role]);
+        // $data['query'] = $this->db->query(
+        //     "SELECT *
+        //     FROM `user` 
+        //     Where `id` == '$role'
+        //    "
+        // )->row_array();
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Congratulation Your Data Has Been Deleted !!
+              </div>');
+        redirect('admin/dataUser');
+    }
 }

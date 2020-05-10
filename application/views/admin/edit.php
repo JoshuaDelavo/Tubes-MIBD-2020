@@ -10,15 +10,17 @@
                     </a>
                     <div class="sb-sidenav-menu-heading">Menu</div>
                     <li class="nav-item active">
-                        <a class="nav-link collapsed" href="<?= base_url('admin/dataUser') ?>">
+                        <a class="nav-link collapsed" href="<?= base_url('admin/dataUser'); ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
                             Data User
                         </a>
                     </li>
-                    <a class="nav-link collapsed" href="<? base_url('admin/dataScooter') ?>">
-                        <div class="sb-nav-link-icon"><i class="fas fa-fw fa-edit"></i></div>
-                        Data & Tarif Scooter
-                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="<?= base_url('admin/dataScooter'); ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fw fa-user"></i></div>
+                            Data & Tarif Scooter
+                        </a>
+                    </li>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -83,5 +85,12 @@
                         <button type="submit" class="btn btn-primary">Change</button>
                     </div>
                 </div>
+            </form>
+            <form action="<?= base_url('admin/delete') ?>" method="POST">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                    <input type="hidden" name="idDelete" id="idDelete" value="<?= $user['id'] ?>">
+                </div>
+
             </form>
         </main>
