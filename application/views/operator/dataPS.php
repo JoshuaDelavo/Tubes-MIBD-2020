@@ -63,8 +63,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <br>
-                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('operator/add') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Penyewa</a>
                     </div>
                 </form>
 

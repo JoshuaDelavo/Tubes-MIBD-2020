@@ -62,12 +62,11 @@
                                 <tbody>
                                     <?php foreach ($orang as $m) : ?>
                                         <?php
-                                        $waktuKembali = $m['waktuKembali'] - 0;
-                                        $waktuPinjam =  $m['waktuPinjam'] - 0;
-                                        $tarif = $waktuKembali - $waktuPinjam - 1;
+                                        $waktuKembali = strtotime($m['waktuKembali']) / 3600;
+                                        $waktuPinjam =   strtotime($m['waktuPinjam']) / 3600;
+                                        $tarif = ($waktuKembali - $waktuPinjam)  - 1;
                                         $tarif = $tarif * $m['tarif'];
-                                        var_dump($tarif);
-                                        die;
+
                                         ?>
                                         <tr>
                                             <td><?= $m['noMesin'] ?></td>
@@ -77,6 +76,7 @@
                                             <td><?= $m['waktuKembali'] ?></td>
                                             <td><?= $m['tanggalPinjam'] ?></td>
                                             <td><?= $tarif ?></td>
+                                            <td><?= $m['rating'] ?></td>
 
                                         </tr>
                                     <?php endforeach; ?>
@@ -84,7 +84,7 @@
                             </table>
                         </div>
                         <br>
-                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('operator/add') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Penyewa</a>
+                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('operator/add') ?>"><i class="fas fa-fw fa-user-plus"></i> Sewa Scooter</a>
                     </div>
                 </form>
 

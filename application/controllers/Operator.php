@@ -63,10 +63,20 @@ class Operator extends CI_Controller
     {
         $data['title'] = 'Operator';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['orang'] = $this->db->query(
+            "SELECT *
+            FROM `datapenyewa` JOIN `datatransaksi` ON
+            `datapenyewa` . `noKtp` = `datatransaksi` . `noKtp`
+            JOIN `memakai` ON 
+            `datatransaksi` . `noTransaksi` = `memakai` . `noTransaksi`
+            JOIN `datascooter` ON
+            `memakai` . `noMesin` = `datascooter` . `noMesin`
+            "
+        )->result_array();
         // $role = $this->input->post('id');
         // $data['dataP'] = $this->db->get_where('datapenyewa', ['noKtp' => $role]);
         $this->load->view('templates/header', $data);
-        $this->load->view('operator/addPenyewa');
+        $this->load->view('operator/sewaTransaksi');
         $this->load->view('templates/footer');
     }
 
@@ -88,22 +98,49 @@ class Operator extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Operator';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['orang'] = $this->db->query(
+                "SELECT *
+                FROM `datapenyewa` JOIN `datatransaksi` ON
+                `datapenyewa` . `noKtp` = `datatransaksi` . `noKtp`
+                JOIN `memakai` ON 
+                `datatransaksi` . `noTransaksi` = `memakai` . `noTransaksi`
+                JOIN `datascooter` ON
+                `memakai` . `noMesin` = `datascooter` . `noMesin`
+                "
+            )->result_array();
             $this->load->view('templates/header', $data);
-            $this->load->view('operator/addPenyewa');
+            $this->load->view('operator/sewaTransaksi');
             $this->load->view('templates/footer');
         } else {
-            $data =
+            $penyewa =
                 [
                     'noKtp' => htmlspecialchars($this->input->post('noKtp')),
                     'username' => htmlspecialchars($this->input->post('name')),
                     'noTelepon' => htmlspecialchars($this->input->post('number')),
                     'alamat' => htmlspecialchars($this->input->post('alamat'))
                 ];
-            $this->db->insert('datapenyewa', $data);
+            $waktuPinjam = time();
+            $transaksi =
+                [
+                    'waktuPinjam' => $waktuPinjam,
+                    'tanggalPinjam' => date('Y-m-d'),
+                    'status' => '1',
+                    'noKtp' => htmlspecialchars($this->input->post('noKtp'))
+                ];
+            $this->db->insert('datapenyewa', $penyewa);
+            $this->db->insert('datatransaksi', $transaksi);
+            $transaksi1 = $this->db->get_where('datatransaksi', ['noKtp' => $this->input->post('noKtp'), 'waktuPinjam' => $waktuPinjam]);
+            var_dump($transaksi1);
+            die;
+            $memakai = [
+                'noTransaksi' => $transaksi1,
+                'noMesin' => $this->input->post('ch')
+            ];
+            $this->db->insert('memakai', $memakai);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Congratulation Penyewa Data Has Been Registered !!
               </div>');
-            redirect('operator/penyewa');
+            redirect('operator/transaksiSewa');
         }
     }
 }

@@ -61,8 +61,18 @@
                         <input class="form-control py-4" id="alamat" name="alamat" type="text" aria-describedby="emailHelp" placeholder="Enter Your Address" />
                         <small class="text-danger"><?= form_error('alamat'); ?></small>
                     </div>
-
-                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Register</button></div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Pilih Scooter</label>
+                        </div>
+                        <select class="custom-select" id="ch" name="ch" required>
+                            <option selected>Choose...</option>
+                            <?php foreach ($orang as $m) : ?>
+                                <option value="<?= $m['noMesin'] ?>"><?= $m['warna'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Bayar</button></div>
                 </form>
 
 
