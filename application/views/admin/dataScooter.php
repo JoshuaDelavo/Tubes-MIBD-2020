@@ -38,7 +38,7 @@
             <!-- query data User -->
             <?= $this->session->flashdata('message'); ?>
             <!-- looping into a table -->
-            <form class="card mb-4" method="POST" action="<?= base_url('admin/edit') ?>">
+            <form class="card mb-4" method="POST" action="<?= base_url('admin/editS') ?>">
                 <div class="card-header"><i class="fas fa-table mr-1"></i>Data User</div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -50,6 +50,7 @@
                                     <th>Jenis</th>
                                     <th>Warna</th>
                                     <th>Tarif Sewa/Jam</th>
+                                    <th>Rating</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -62,9 +63,11 @@
                                         <td><?= $m['noMesin'] ?></td>
                                         <td><?= $m['jenis'] ?></td>
                                         <td><?= $m['warna'] ?></td>
+                                        <td><?= $m['tarif'] ?></td>
                                         <td><?= $m['rating'] ?></td>
                                         <td><button class="btn" name="id" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        <td><a href=""><i class="fas fa-fw fa-user-edit"></i>Delete</a></td>
+                                        <td><button class="btn" name="delete" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></td>
+
                                     </tr>
                                     <?php $ct++; ?>
                                 <?php endforeach; ?>
@@ -72,7 +75,7 @@
                         </table>
                     </div>
                     <br>
-                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('auth/registration') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New User</a>
+                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('auth/registration') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Scooter</a>
                 </div>
             </form>
 

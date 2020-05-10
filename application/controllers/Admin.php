@@ -76,7 +76,9 @@ class Admin extends CI_Controller
                 'password' => $pass,
                 'role_id' => $jabatan
             ];
-
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulation Your Data Has Been Updated !!
+          </div>');
         $post = $this->input->post('data');
         $this->db->update('user', $data, "id = $post");
         redirect('admin/dataUser');

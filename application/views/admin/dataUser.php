@@ -27,12 +27,12 @@
             </div>
         </nav>
     </div>
+
     <div id="layoutSidenav_content">
         <main>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Data User</li>
             </ol>
-
             <!-- query data User -->
             <?= $this->session->flashdata('message'); ?>
             <!-- looping into a table -->
@@ -69,7 +69,7 @@
                                         <td><?= $m['password'] ?></td>
                                         <td><?= $jabatan ?></td>
                                         <td><button class="btn" name="id" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        <td><a href=""><i class="fas fa-fw fa-user-edit"></i>Delete</a></td>
+                                        <td><button class="btn" name="delete" value="<?= $m['id'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></td>
                                     </tr>
                                     <?php $ct++; ?>
                                 <?php endforeach; ?>
