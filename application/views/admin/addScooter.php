@@ -35,49 +35,37 @@
                 <li class="breadcrumb-item active">Data Scooter</li>
             </ol>
 
-            <!-- query data User -->
-            <?= $this->session->flashdata('message'); ?>
+
             <!-- form data table -->
-            <?= form_open_multipart('admin/updateS'); ?>
-            <input type="hidden" name="data" value="<?= $dataS['noMesin'] ?>">
-            <div class="form-group row col-7">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">No Mesin</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="mesin" id="mesin" value="<?= $dataS['noMesin'] ?>" readonly>
-                </div>
-            </div>
-            <div class="form-group row col-7">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Jenis</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" name="jenis" id="jenis" value="<?= $dataS['jenis'] ?>" readonly>
-                </div>
-            </div>
+            <?= form_open_multipart('admin/addScooter'); ?>
             <div class="form-group row col-7">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Warna</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" name="warna" id="warna" value="<?= $dataS['warna'] ?>" readonly>
+                    <input type="text" class="form-control" name="warna" id="warna">
                 </div>
             </div>
             <div class="form-group row col-7">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Tarif</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="tarif" id="tarif" value="<?= $dataS['tarif'] ?>">
+                    <input type="text" class="form-control" name="tarif" id="tarif">
                 </div>
             </div>
             <div class="form-group row col-7">
                 <div class="col-sm-2">Picture</div>
                 <div class="col-sm-10">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <img src="<?= base_url('asset/image/') . $dataS['gambar'] ?>" class="img-thumbnail">
+                        <div class="col-sm-9">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="file" id="file">
+                                <label class="custom-file-label" for="file">Choose file</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="form-group row col-7">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Change</button>
+                    <button type="submit" class="btn btn-primary">Add New Scooter</button>
                 </div>
             </div>
             </form>

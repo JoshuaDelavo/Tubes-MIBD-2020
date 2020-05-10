@@ -51,11 +51,9 @@
                                     <th>Warna</th>
                                     <th>Tarif Sewa/Jam</th>
                                     <th>Edit</th>
-                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $ct = 1 ?>
                                 <?php foreach ($query as $m) : ?>
                                     <tr>
                                         <td><img src="../asset/image/<?= $m['gambar'] ?>" class="img-thumbnail" style="width: 100px; height: 50"></img> </td>
@@ -63,17 +61,14 @@
                                         <td><?= $m['jenis'] ?></td>
                                         <td><?= $m['warna'] ?></td>
                                         <td><?= $m['tarif'] ?></td>
-                                        <td><button class="btn" name="id" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        <td><a href="<? base_url('admin/delete') ?>"> <button class="btn" name="delete" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></a></td>
-
+                                        <td><button class="btn" name="id" id="id" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
                                     </tr>
-                                    <?php $ct++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
                     <br>
-                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Scooter</a>
+                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('admin/addS') ?>"><i class="fas fa-fw fa-bicycle"></i> Add New Scooter</a>
                 </div>
             </form>
 
