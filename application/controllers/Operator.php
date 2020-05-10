@@ -9,6 +9,7 @@ class Operator extends CI_Controller
         if (!$this->session->userdata['email']) {
             redirect('auth');
         }
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -26,13 +27,38 @@ class Operator extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['orang'] = $this->db->query(
             "SELECT *
-            FROM `datapenyewa`
+            FROM `datapenyewa` JOIN `datatransaksi` ON
+            `datapenyewa` . `noKtp` = `datatransaksi` . `noKtp`
+            JOIN `memakai` ON 
+            `datatransaksi` . `noTransaksi` = `memakai` . `noTransaksi`
+            JOIN `datascooter` ON
+            `memakai` . `noMesin` = `datascooter` . `noMesin`
             "
         )->result_array();
         $this->load->view('templates/header', $data);
-        $this->load->view('operator/dataPenyewa');
+        $this->load->view('operator/dataPS');
         $this->load->view('templates/footer');
     }
+
+    public function transaksi()
+    {
+        $data['title'] = 'Operator';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['orang'] = $this->db->query(
+            "SELECT *
+            FROM `datapenyewa` JOIN `datatransaksi` ON
+            `datapenyewa` . `noKtp` = `datatransaksi` . `noKtp`
+            JOIN `memakai` ON 
+            `datatransaksi` . `noTransaksi` = `memakai` . `noTransaksi`
+            JOIN `datascooter` ON
+            `memakai` . `noMesin` = `datascooter` . `noMesin`
+            "
+        )->result_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('operator/transaksiSewa');
+        $this->load->view('templates/footer');
+    }
+
     public function add()
     {
         $data['title'] = 'Operator';
@@ -42,5 +68,42 @@ class Operator extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('operator/addPenyewa');
         $this->load->view('templates/footer');
+    }
+
+    public function insert()
+    {
+        $data['title'] = 'Operator';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->form_validation->set_rules(
+            'noKtp',
+            'NoKtp',
+            'required|is_unique[datapenyewa.noKtp]',
+            [
+                'is_unique' => 'This No Ktp Already Registered'
+            ]
+        );
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('number', 'No Telepon', 'required');
+        $this->form_validation->set_rules('alamat', 'Address', 'required');
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Operator';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('operator/addPenyewa');
+            $this->load->view('templates/footer');
+        } else {
+            $data =
+                [
+                    'noKtp' => htmlspecialchars($this->input->post('noKtp')),
+                    'username' => htmlspecialchars($this->input->post('name')),
+                    'noTelepon' => htmlspecialchars($this->input->post('number')),
+                    'alamat' => htmlspecialchars($this->input->post('alamat'))
+                ];
+            $this->db->insert('datapenyewa', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Congratulation Penyewa Data Has Been Registered !!
+              </div>');
+            redirect('operator/penyewa');
+        }
     }
 }

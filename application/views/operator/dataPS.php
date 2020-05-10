@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link collapsed" href="#">
+                        <a class="nav-link collapsed" href="<?= base_url('operator/transaksi') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-book-open"></i></div>
                             Record Transaksi Pengembalian Scooter
                         </a>
@@ -32,11 +32,12 @@
         </nav>
     </div>
     <div id="layoutSidenav_content">
+        <?= $this->session->flashdata('message'); ?>
         <main>
             <div class="container-fluid">
                 <h1 class="mt-4"> Welcome <?= $user['name']; ?></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Data Penyewa</li>
+                    <li class="breadcrumb-item active">Data Penyewa & Scooter</li>
                 </ol>
 
                 <!-- looping into a table -->
@@ -47,28 +48,23 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>No Ktp</th>
-                                        <th>Nama</th>
-                                        <th>No Telepon</th>
-                                        <th>Alamat</th>
-                                        <th>Edit</th>
+                                        <th>No Ktp Sewa</th>
+                                        <th>Id Scooter</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($orang as $m) : ?>
                                         <tr>
                                             <td><?= $m['noKtp'] ?></td>
-                                            <td><?= $m['username'] ?></td>
-                                            <td><?= $m['noTelepon'] ?></td>
-                                            <td><?= $m['alamat'] ?></td>
-                                            <td><button class="btn" name="id" id="id" value="<?= $m['noKtp'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
+                                            <td><?= $m['noMesin'] ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                         <br>
-                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('admin/addS') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Penyewa</a>
+                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('operator/add') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Penyewa</a>
                     </div>
                 </form>
 

@@ -18,7 +18,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link collapsed" href="#">
+                        <a class="nav-link collapsed" href="<?= base_url('operator/transaksi') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-book-open"></i></div>
                             Record Transaksi Pengembalian Scooter
                         </a>
@@ -36,40 +36,33 @@
             <div class="container-fluid">
                 <h1 class="mt-4"> Welcome <?= $user['name']; ?></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Data Penyewa</li>
+                    <li class="breadcrumb-item active">Data Penyewa & Scooter</li>
                 </ol>
 
                 <!-- looping into a table -->
-                <form class="card mb-4" method="POST" action="<?= base_url('operator/add') ?>">
-                    <div class="card-header"><i class="fas fa-table mr-1"></i>Data User</div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>No Ktp</th>
-                                        <th>Nama</th>
-                                        <th>No Telepon</th>
-                                        <th>Alamat</th>
-                                        <th>Edit</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($orang as $m) : ?>
-                                        <tr>
-                                            <td><?= $m['noKtp'] ?></td>
-                                            <td><?= $m['username'] ?></td>
-                                            <td><?= $m['noTelepon'] ?></td>
-                                            <td><?= $m['alamat'] ?></td>
-                                            <td><button class="btn" name="id" id="id" value="<?= $m['noKtp'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                <form action="<?= base_url('operator/insert'); ?>" method="POST">
+                    <div class="form-row">
+                        <div class="col-md">
+                            <div class="form-group"><label class="small mb-1" for="inputFirstName">No KTP</label>
+                                <input class="form-control py-4" id="noKtp" name="noKtp" type="text" placeholder="Enter No KTP" />
+                                <small class="text-danger"><?= form_error('noKtp'); ?></small>
+                            </div>
                         </div>
-                        <br>
-                        <a class="btn btn-primary mb-3 col-3" href="<?= base_url('admin/addS') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Penyewa</a>
                     </div>
+                    <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Name</label>
+                        <input class="form-control py-4" id="name" name="name" type="text" aria-describedby="emailHelp" placeholder="Enter Name" />
+                        <small class="text-danger"><?= form_error('name'); ?></small>
+                    </div>
+                    <div class="form-group"><label class="small mb-1" for="inputEmailAddress">No Telepon</label>
+                        <input class="form-control py-4" id="number" name="number" type="text" aria-describedby="emailHelp" placeholder="Enter Your Number" />
+                        <small class="text-danger"><?= form_error('number'); ?></small>
+                    </div>
+                    <div class="form-group"><label class="small mb-1" for="inputEmailAddress">Address</label>
+                        <input class="form-control py-4" id="alamat" name="alamat" type="text" aria-describedby="emailHelp" placeholder="Enter Your Address" />
+                        <small class="text-danger"><?= form_error('alamat'); ?></small>
+                    </div>
+
+                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Register</button></div>
                 </form>
 
 
