@@ -37,7 +37,7 @@ class Admin extends CI_Controller
 
     public function edit()
     {
-        $data['title'] = 'Data User';
+        $data['title'] = 'Edit Data User';
         $role = $this->input->post('id');
         $data['user'] = $this->db->get_where('user', ['id' => $role])->row_array();
         // $data['query'] = $this->db->query(
@@ -133,6 +133,17 @@ class Admin extends CI_Controller
         )->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('admin/dataScooter', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function editS()
+    {
+        $data['title'] = 'Edit Data Scooter';
+        $role = $this->input->post('id');
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['dataS'] = $this->db->get_where('datascooter', ['noMesin' => $role])->row_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/editS', $data);
         $this->load->view('templates/footer');
     }
 }

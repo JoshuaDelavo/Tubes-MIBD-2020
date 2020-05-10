@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group row col-7">
                     <div class="col-sm-10">
-                        <button type="submit" onclick="update()" class="btn btn-primary">Change</button>
+                        <button type="submit" class="btn btn-primary">Change</button>
                     </div>
                 </div>
             </form>

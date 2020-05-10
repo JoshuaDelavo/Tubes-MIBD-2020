@@ -50,7 +50,6 @@
                                     <th>Jenis</th>
                                     <th>Warna</th>
                                     <th>Tarif Sewa/Jam</th>
-                                    <th>Rating</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -64,9 +63,8 @@
                                         <td><?= $m['jenis'] ?></td>
                                         <td><?= $m['warna'] ?></td>
                                         <td><?= $m['tarif'] ?></td>
-                                        <td><?= $m['rating'] ?></td>
                                         <td><button class="btn" name="id" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Edit</button></td>
-                                        <td><button class="btn" name="delete" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></td>
+                                        <td><a href="<? base_url('admin/delete') ?>"> <button class="btn" name="delete" value="<?= $m['noMesin'] ?>" type="submit"><i class="fas fa-fw fa-user-edit"></i>Delete</button></a></td>
 
                                     </tr>
                                     <?php $ct++; ?>
@@ -75,7 +73,7 @@
                         </table>
                     </div>
                     <br>
-                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('auth/registration') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Scooter</a>
+                    <a class="btn btn-primary mb-3 col-2" href="<?= base_url('') ?>"><i class="fas fa-fw fa-user-plus"></i> Add New Scooter</a>
                 </div>
             </form>
 
