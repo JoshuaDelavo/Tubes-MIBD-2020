@@ -3,20 +3,26 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Profile</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Operator
-                    </a>
-                    <div class="sb-sidenav-menu-heading">Menu</div>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-fw fa-table"></i></div>
-                        Record Data Penyewa Beserta Scotter
-                    </a>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-fw fa-book-open"></i></div>
-                        Record Transaksi Pengembalian Scooter
-                    </a>
+                    <li class="nav-item active">
+                        <div class="sb-sidenav-menu-heading">Profile</div>
+                        <a class="nav-link" href="<?= base_url('operator') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Operator
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <div class="sb-sidenav-menu-heading">Menu</div>
+                        <a class="nav-link collapsed" href="<?= base_url('operator/penyewa') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fw fa-table"></i></div>
+                            Record Data Penyewa Beserta Scotter
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link collapsed" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fw fa-book-open"></i></div>
+                            Record Transaksi Pengembalian Scooter
+                        </a>
+                    </li>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -30,7 +36,7 @@
             <div class="container-fluid">
                 <h1 class="mt-4"> Welcome <?= $user['name']; ?></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active">Operator</li>
                 </ol>
                 <div class="row">
                     <div class="col-xl-3 col-md-6">

@@ -4,10 +4,12 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Profile</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
-                        Admin
-                    </a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<?= base_url('admin') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
+                            Admin
+                        </a>
+                    </li>
                     <div class="sb-sidenav-menu-heading">Menu</div>
                     <li class="nav-item active">
                         <a class="nav-link collapsed" href="<?= base_url('admin/dataUser'); ?>">
