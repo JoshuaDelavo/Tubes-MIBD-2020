@@ -81,4 +81,11 @@
                 </div>
             </div>
             </form>
+            <form action="<?= base_url('admin/deleteS') ?>" method="POST">
+                <div class="form-group row col-7">
+                    <div class="col-sm-10">
+                        <button type="submit" name="delete" id="delete" value="<?= $dataS['noMesin'] ?>" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>
+            </form>
         </main>

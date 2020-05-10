@@ -127,6 +127,23 @@ class Admin extends CI_Controller
         redirect('admin/dataUser');
     }
 
+    public function deleteS()
+    {
+        $data['title'] = 'Data Scooter ';
+        $role = $this->input->post('delete');
+        $this->db->delete('datascooter', ['noMesin' => $role]);
+        // $data['query'] = $this->db->query(
+        //     "SELECT *
+        //     FROM `user` 
+        //     Where `id` == '$role'
+        //    "
+        // )->row_array();
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Congratulation Your Data Scooter Has Been Deleted !!
+              </div>');
+        redirect('admin/dataScooter');
+    }
+
     public function addS()
     {
         $data['title'] = 'Edit Data Scooter';
@@ -167,18 +184,6 @@ class Admin extends CI_Controller
           </div>');
             redirect('admin/addScooter');
         }
-
-        // if ($upload_image) {
-
-        // }
-        // $data =
-        //     [
-        //         'gambar' => htmlspecialchars($this->input->post('name', true)),
-        //         'email' => htmlspecialchars($this->input->post('email', true)),
-        //         'password' => $pass,
-        //         'role_id' => $jabatan
-        //     ];
-
     }
 
     public function updateS()
