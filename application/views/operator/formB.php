@@ -3,7 +3,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <div class="sb-sidenav-menu-heading">Profile</div>
                         <a class="nav-link" href="<?= base_url('operator') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -17,7 +17,7 @@
                             Record Data Penyewa Beserta Scotter
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item active">
                         <a class="nav-link collapsed" href="<?= base_url('operator/transaksi') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-fw fa-book-open"></i></div>
                             Record Transaksi Pengembalian Scooter
@@ -36,24 +36,22 @@
             <div class="container-fluid">
                 <h1 class="mt-4"> Welcome <?= $user['name']; ?></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Operator</li>
+                    <li class="breadcrumb-item active">Data Penyewa & Scooter</li>
                 </ol>
+                <?= $this->session->flashdata('message'); ?>
 
+                <!-- looping into a table -->
 
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="<?= base_url('asset/image/') . $user['image']; ?>" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $user['name']; ?></h5>
-                                <p class="card-text"><?= $user['email']; ?></p>
-                                <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small></p>
-                            </div>
-                        </div>
+                <form class="form-inline" action="<?= base_url('operator/bayar') ?>" method="POST">
+                    <div class="form-group">
+                        <label for="inputPassword6">Insert The Rating</label>
+                        <input type="text" id="rating" name="rating" class="form-control mx-sm-3" aria-describedby="passwordHelpInline" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" name="btn" id="btn" value="<?= $value['noTransaksi'] ?>">Bayar</button>
+                    </div>
+                </form>
+
         </main>
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid">

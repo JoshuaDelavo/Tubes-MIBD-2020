@@ -11,6 +11,7 @@ class Admin extends CI_Controller
             redirect('auth');
         }
         $this->load->library('form_validation');
+        $data['url'] = 'admin';
     }
     public function index()
     {

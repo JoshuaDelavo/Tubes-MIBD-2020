@@ -10,6 +10,7 @@ class Operator extends CI_Controller
             redirect('auth');
         }
         $this->load->library('form_validation');
+        $data['url'] = 'operator';
     }
 
     public function index()
@@ -119,7 +120,9 @@ class Operator extends CI_Controller
                     'noTelepon' => htmlspecialchars($this->input->post('number')),
                     'alamat' => htmlspecialchars($this->input->post('alamat'))
                 ];
-            $waktuPinjam = time();
+            date_default_timezone_set("Asia/Bangkok");
+            $date = time();
+            $waktuPinjam = date("H:i:s");
             $transaksi =
                 [
                     'waktuPinjam' => $waktuPinjam,
@@ -127,20 +130,95 @@ class Operator extends CI_Controller
                     'status' => '1',
                     'noKtp' => htmlspecialchars($this->input->post('noKtp'))
                 ];
+            // $id = $this->input->post('id');
+            // var_dump($id);
+            // die;
+            $noKtp = htmlspecialchars($this->input->post('noKtp'));
             $this->db->insert('datapenyewa', $penyewa);
             $this->db->insert('datatransaksi', $transaksi);
-            $transaksi1 = $this->db->get_where('datatransaksi', ['noKtp' => $this->input->post('noKtp'), 'waktuPinjam' => $waktuPinjam]);
-            var_dump($transaksi1);
-            die;
+            $data['id'] = $this->db->query(
+                "SELECT  `noTransaksi`
+                                  FROM `datatransaksi`
+                                  WHERE `noKtp` = $noKtp
+                                                                                                                  "
+            )->result_array();
+
             $memakai = [
-                'noTransaksi' => $transaksi1,
+                'noTransaksi' => $data['id'][0]['noTransaksi'],
                 'noMesin' => $this->input->post('ch')
             ];
             $this->db->insert('memakai', $memakai);
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Congratulation Penyewa Data Has Been Registered !!
               </div>');
-            redirect('operator/transaksiSewa');
+            redirect('operator/transaksi');
+        }
+    }
+
+    public function formB()
+    {
+
+        $id = $this->input->post('btn');
+
+        if ($id == 0) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            This Person Has Already Paid !!
+            </div>');
+            redirect('operator/transaksi');
+        } else {
+            $data['title'] = 'Operator';
+            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['value'] = $this->db->get_where('datatransaksi', ['noTransaksi' => $id])->row_array();
+            $this->load->view('templates/header', $data);
+            $this->load->view('operator/formB');
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function bayar()
+    {
+        $id = $this->input->post('btn');
+        if ($id == '0') {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                This Person Has Already Paid !!
+              </div>');
+            redirect('operator/transaksi');
+        } else {
+            date_default_timezone_set("Asia/Bangkok");
+            $date = time();
+            $waktuR = date("H:i:s");
+            $tanggal = $this->db->query(
+                "SELECT `waktuPinjam`
+                 FROM `datatransaksi`
+                 "
+            )->result_array();
+            $waktu =
+                [
+                    'waktuKembali' => $waktuR
+                ];
+            $status =
+                [
+                    'status' => '0'
+                ];
+            $rating = $this->db->query(
+                "SELECT `noMesin`
+                     FROM `memakai`
+                     WHERE `noTransaksi` = $id;
+                    "
+
+            )->result_array();
+            $cek = $rating[0]['noMesin'] + 0;
+            $rate =
+                [
+                    'rating' => $this->input->post('rating')
+                ];
+            $this->db->update('datascooter', $rate, "noMesin = $cek");
+            $this->db->update('datatransaksi', $waktu, "noTransaksi = $id");
+            $this->db->update('datatransaksi', $status, "noTransaksi = $id");
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Congratulation This Transaction Has Already Paid !!
+          </div>');
+            redirect('operator/transaksi');
         }
     }
 }

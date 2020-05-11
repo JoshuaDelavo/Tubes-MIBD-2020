@@ -72,7 +72,9 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Bayar</button></div>
+                    <input type="hidden" name="id" id="id">
+                    <div class=" form-group mt-4 mb-0"><button type="submit" class="btn btn-primary btn-block">Bayar</button>
+                    </div>
                 </form>
 
 
