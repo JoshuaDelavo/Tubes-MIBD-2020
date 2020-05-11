@@ -44,8 +44,8 @@
                     <div class="form-row">
                         <div class="col-md">
                             <div class="form-group"><label class="small mb-1" for="inputFirstName">No KTP</label>
-                                <input class="form-control py-4" id="noKtp" name="noKtp" type="text" placeholder="Enter No KTP" />
-                                <small class="text-danger"><?= form_error('noKtp'); ?></small>
+                                <input class="form-control py-4" id="noKtp" name="noKtp" type="text" placeholder="Enter No KTP" required />
+
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                         </div>
                         <select class="custom-select" id="ch" name="ch" required>
                             <option selected>Choose...</option>
-                            <?php foreach ($orang as $m) : ?>
+                            <?php foreach ($scooter as $m) : ?>
                                 <option value="<?= $m['noMesin'] ?>"><?= $m['warna'] ?></option>
                             <?php endforeach; ?>
                         </select>

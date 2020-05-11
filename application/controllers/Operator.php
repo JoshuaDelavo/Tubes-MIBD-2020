@@ -74,6 +74,11 @@ class Operator extends CI_Controller
             `memakai` . `noMesin` = `datascooter` . `noMesin`
             "
         )->result_array();
+        $data['scooter'] = $this->db->query(
+            "SELECT *
+            FROM `datascooter`
+            "
+        )->result_array();
         // $role = $this->input->post('id');
         // $data['dataP'] = $this->db->get_where('datapenyewa', ['noKtp' => $role]);
         $this->load->view('templates/header', $data);

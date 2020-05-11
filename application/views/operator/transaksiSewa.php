@@ -68,6 +68,8 @@
                                         $tarif = ($waktuKembali - $waktuPinjam);
                                         if ($tarif <= 0) {
                                             $tarif = 0;
+                                        } else if ($tarif <= 1 && $tarif > 0) {
+                                            $tarif = 0;
                                         } else {
                                             $tarif = $tarif - 1;
                                             $tarif = $tarif * $m['tarif'];
