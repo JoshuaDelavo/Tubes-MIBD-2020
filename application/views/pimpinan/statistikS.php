@@ -54,22 +54,37 @@
             <div class="container-fluid">
                 <h1 class="mt-4"> Welcome <?= $user['name']; ?></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Profile</li>
+                    <li class="breadcrumb-item active">Statistik</li>
                 </ol>
 
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="<?= base_url('asset/image/') . $user['image']; ?>" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $user['name']; ?></h5>
-                                <p class="card-text"><?= $user['email']; ?></p>
-                                <p class="card-text"><small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small></p>
-                            </div>
+                <form class="card mb-4">
+                    <div class="card-header"><i class="fas fa-table mr-1"></i>Statistik Penyewa</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Id Scooter</th>
+                                        <th>Warna</th>
+                                        <th>Jenis </th>
+                                        <th>Rating</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php foreach ($scooter as $m) : ?>
+                                        <tr>
+                                            <td><?= $m['noMesin'] ?></td>
+                                            <td><?= $m['warna'] ?></td>
+                                            <td><?= $m['jenis'] ?></td>
+                                            <td><?= $m['rating'] ?></td>
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </main>
